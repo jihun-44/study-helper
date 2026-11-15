@@ -1,0 +1,382 @@
+/* ===== 색/글꼴 변수 (여기만 바꾸면 사이트 전체 분위기가 바뀜) ===== */
+:root {
+  --paper: #ffffff;      /* 배경 */
+  --tint: #eef4ff;       /* 연파랑 (카드 강조 배경) */
+  --ink: #10234a;        /* 글자: 짙은 남색 */
+  --ink-soft: #5b6b8c;
+  --line: #dbe4f5;
+  --pill: #eef1f6;       /* 선택 안 된 알약 버튼 배경 */
+  --accent: #2563eb;     /* 테마색: 파랑 */
+  --accent-deep: #1d3bc9;
+  --pink: #ff2d87;       /* 제목 앞 작은 점 */
+  --focus: #2563eb;
+  --sans: "Pretendard Variable", Pretendard, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+}
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }  /* hidden 속성이 버튼 스타일에 지지 않게 */
+
+body {
+  margin: 0 auto;
+  max-width: 1040px;
+  padding: 16px 16px 64px;   /* 폰: 좌우 16px */
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  line-height: 1.7;
+  -webkit-text-size-adjust: 100%;
+}
+body.study { max-width: 760px; }
+
+/* 키보드로 이동할 때 보이는 테두리 */
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; border-radius: 4px; }
+
+/* ===== 상단 파란 배너 ===== */
+.hero {
+  position: relative;
+  overflow: hidden;
+  padding: 40px 24px 44px;
+  border-radius: 28px;
+  background: linear-gradient(120deg, #1c3fc4 0%, #2b45dc 55%, #5a3fd6 100%);
+  color: #fff;
+}
+.hero > * { position: relative; z-index: 1; }
+/* 배너 장식: 큰 원 테두리 + 금색 동전 */
+.hero::before {
+  content: "";
+  position: absolute;
+  right: -90px; top: -70px;
+  width: 300px; height: 300px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, .25);
+  box-shadow: 0 0 0 36px rgba(255, 255, 255, .06);
+}
+.hero::after {
+  content: "";
+  position: absolute;
+  right: 12%; bottom: 22px;
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #fff0a0, #ffc400 70%);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, .2);
+}
+.hero-sub { margin: 0 0 8px; color: rgba(255, 255, 255, .88); }
+.hero h1 {
+  margin: 0;
+  font-size: clamp(2rem, 6vw, 3rem);
+  font-weight: 800;
+  line-height: 1.25;
+}
+.back { display: inline-block; margin-bottom: 14px; color: rgba(255, 255, 255, .88); text-decoration: none; }
+.back:hover { color: #fff; text-decoration: underline; }
+.back + .back { margin-left: 16px; }
+/* 배너 안의 버튼 (공부 페이지의 "퀴즈 풀기") */
+.hero-btn {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  margin-top: 16px;
+  padding: 0 22px;
+  border: 2px solid #fff;
+  border-radius: 999px;
+  color: #fff;
+  font-weight: 700;
+  text-decoration: none;
+}
+.hero-btn:hover { background: #fff; color: var(--accent-deep); }
+body.study .hero { padding-top: 28px; }
+body.study .hero h1 { font-size: clamp(1.5rem, 5vw, 2.25rem); max-width: 80%; }
+
+/* ===== 검색창 + 해시태그 ===== */
+.search {
+  display: flex;
+  align-items: center;
+  max-width: 620px;
+  height: 56px;
+  margin: 28px auto 12px;
+  padding-right: 8px;
+  border: 2px solid var(--accent);
+  border-radius: 999px;
+  background: #fff;
+}
+.search:focus-within { box-shadow: 0 0 0 3px rgba(37, 99, 235, .25); }
+.search input {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  padding: 0 24px;
+  border: 0;
+  border-radius: 999px;
+  outline: none;
+  background: none;
+  color: var(--ink);
+  font: 400 1rem var(--sans);   /* 16px 이상이어야 아이폰이 확대하지 않음 */
+  appearance: none;
+}
+.search button {
+  display: grid;
+  place-items: center;
+  width: 40px; height: 40px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--accent-deep);
+  color: #fff;
+  cursor: pointer;
+}
+.tags { display: flex; flex-wrap: wrap; justify-content: center; gap: 0 8px; margin-bottom: 40px; }
+.tag {
+  min-height: 40px;
+  padding: 0 10px;
+  border: 0;
+  background: none;
+  color: var(--ink);
+  font: 600 .875rem var(--sans);
+  cursor: pointer;
+}
+.tag[aria-pressed="true"] { color: var(--accent); text-decoration: underline; text-underline-offset: 4px; }
+
+/* ===== 제목 (앞에 분홍 점) ===== */
+.section-title { margin: 0 0 16px; font-size: 1.5rem; font-weight: 800; line-height: 1.3; }
+.section-title::before {
+  content: "";
+  display: inline-block;
+  width: 7px; height: 7px;
+  margin: 0 5px 0 0;
+  border-radius: 50%;
+  background: var(--pink);
+  vertical-align: top;
+}
+
+/* ===== 학교 선택 (알약 버튼) ===== */
+.schools {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+  padding-bottom: 4px;
+  overflow-x: auto;           /* 폰에서 학교가 많으면 옆으로 밀어서 보기 */
+  scrollbar-width: none;
+}
+.school {
+  flex: none;
+  min-height: 44px;           /* 손가락으로 누르기 편한 크기 */
+  padding: 0 20px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--pill);
+  color: var(--ink-soft);
+  font: 500 1rem var(--sans);
+  cursor: pointer;
+}
+.school[aria-pressed="true"] { background: var(--accent-deep); color: #fff; font-weight: 700; }
+
+/* ===== 단원 카드 ===== */
+.units { display: grid; gap: 12px; }
+.unit {
+  display: grid;
+  gap: 8px;
+  padding: 20px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: #fff;
+  color: var(--ink);
+}
+/* 카드 아래의 두 버튼: 공부하기(요약 페이지) / 퀴즈 풀기(퀴즈 페이지) */
+.unit-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+.mini {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0 20px;
+  border: 1px solid var(--accent-deep);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--accent-deep);
+  font-weight: 700;
+  text-decoration: none;
+}
+.mini:hover { background: var(--tint); }
+.mini.fill { background: var(--accent-deep); color: #fff; }
+.mini.fill:hover { filter: brightness(1.1); }
+.chip {
+  justify-self: start;
+  padding: 0 8px;
+  border: 1px solid var(--accent);
+  border-radius: 4px;
+  color: var(--accent);
+  font-size: .75rem;
+  font-weight: 600;
+  line-height: 1.6;
+}
+.unit-title { font-size: 1.1875rem; font-weight: 700; line-height: 1.4; }
+.empty { grid-column: 1 / -1; color: var(--ink-soft); }
+
+/* ===== 요약 / 퀴즈 ===== */
+body.study main { margin-top: 32px; }
+.summary {
+  margin-bottom: 24px;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  font-size: 1rem;
+  line-height: 1.8;
+  white-space: pre-line;      /* JSON 안의 줄바꿈(\n)을 그대로 보여줌 */
+  word-break: keep-all;       /* 한국어를 낱말(띄어쓰기) 단위로 줄바꿈 */
+  overflow-wrap: break-word;  /* 아주 긴 낱말만 강제로 끊음 */
+}
+/* 요약 안의 제목·문단·목록 */
+.summary h2 { margin: 28px 0 10px; font-size: 1.25rem; font-weight: 800; line-height: 1.4; }
+.summary h2:first-child { margin-top: 0; }
+.summary h3 { margin: 20px 0 6px; font-size: 1.0625rem; font-weight: 700; line-height: 1.5; }
+.summary p { margin: 0 0 12px; }
+.summary ul { margin: 0 0 12px; padding-left: 1.25rem; }
+.summary ul.plain { padding-left: 0; list-style: none; }
+.summary ul.plain ul { padding-left: 1.25rem; }
+.summary li { margin: 2px 0; }
+.summary li > ul { margin: 2px 0 4px; }
+/* [[정답]] 형광펜: 학습지 빈칸에 채워 넣은 정답 */
+mark.fill {
+  padding: 0 4px;
+  border-radius: 4px;
+  background: #cfe0ff;
+  color: var(--accent-deep);
+  font-weight: 700;
+}
+/* 표 */
+.table-wrap { margin: 0 0 16px; overflow-x: auto; }
+.summary table { width: 100%; border-collapse: collapse; font-size: .9375rem; line-height: 1.6; }
+.summary table.wide { min-width: 560px; }
+.summary caption { padding-bottom: 6px; text-align: left; font-weight: 700; caption-side: top; }
+.summary th, .summary td { padding: 8px 10px; border: 1px solid var(--line); text-align: left; vertical-align: top; }
+.summary th { background: var(--tint); font-weight: 700; }
+.summary th[scope="row"] { width: 5em; white-space: nowrap; }  /* 행 제목 칸은 글자가 세로로 쪼개지지 않게 */
+.summary th[scope="row"].long { white-space: normal; }  /* 행 제목이 긴 표만 줄바꿈 허용 */
+/* 사료(자료) 글 */
+.summary blockquote.source {
+  margin: 0 0 16px;
+  padding: 12px 16px;
+  border-left: 4px solid var(--line);
+  border-radius: 0 8px 8px 0;
+  background: #f6f8fc;
+  font-size: .9375rem;
+}
+.summary blockquote strong { display: block; margin-bottom: 4px; }
+.summary blockquote p { margin: 0 0 6px; }
+.summary blockquote cite { display: block; color: var(--ink-soft); font-style: normal; text-align: right; }
+/* 교과서 보충 상자 */
+.tip {
+  margin: 0 0 20px;
+  padding: 14px 16px 4px;
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--accent);
+  border-radius: 8px;
+  background: var(--tint);
+}
+.tip-title { margin: 0 0 8px !important; color: var(--accent-deep); font-weight: 800; }
+.tip th { background: #fff; }
+.tip td { background: #fff; }
+/* 사진 */
+.summary figure { margin: 0 0 20px; }
+.summary img { display: block; max-width: 100%; max-height: 420px; width: auto; height: auto; border-radius: 8px; background: var(--pill); }
+.summary figcaption { margin-top: 6px; color: var(--ink-soft); font-size: .8125rem; line-height: 1.5; }
+.question {
+  padding: 20px;
+  background: var(--tint);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+}
+.progress { margin: 0 0 8px; color: var(--ink-soft); font-size: .9375rem; }
+.q-text { margin: 0 0 16px; font-size: 1.125rem; font-weight: 700; line-height: 1.6; white-space: pre-line; word-break: keep-all; overflow-wrap: break-word; }
+/* 문제 위쪽의 유형·난이도 표시 */
+.tag-type, .tag-level {
+  display: inline-block;
+  margin-left: 4px;
+  padding: 0 10px;
+  border-radius: 999px;
+  font-size: .8125rem;
+  font-weight: 700;
+  line-height: 1.8;
+}
+.tag-type { border: 1px solid var(--line); background: #fff; color: var(--ink-soft); }
+.tag-level { background: var(--accent); color: #fff; }
+.tag-level[data-level="하"] { background: #5b6b8c; }
+.tag-level[data-level="상"] { background: #4a3fd6; }
+.tag-level[data-level="최상"] { background: #d6176f; }
+/* 객관식·OX 보기 버튼 */
+.choices { display: grid; gap: 8px; margin-bottom: 12px; }
+.choices.ox { grid-template-columns: 1fr 1fr; }
+.choice {
+  display: block;
+  width: 100%;
+  min-height: 48px;
+  padding: 10px 14px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #fff;
+  color: var(--ink);
+  font: 500 1rem/1.5 var(--sans);
+  text-align: left;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+  cursor: pointer;
+}
+.choices.ox .choice { min-height: 56px; text-align: center; font-weight: 700; }
+.choice:hover:not(:disabled) { border-color: var(--accent); background: var(--tint); }
+.choice:disabled { cursor: default; }
+.choice.right { border-color: var(--accent); background: #dce8ff; color: var(--accent-deep); font-weight: 700; }
+.choice.wrong { border-color: #b3261e; background: #fdecea; color: #b3261e; }
+/* 답을 낸 뒤 나오는 해설·복습할 곳 */
+.detail p { margin: 8px 0 0; font-size: .9375rem; line-height: 1.6; }
+.detail .src { color: var(--ink-soft); }
+/* 퀴즈 설정 화면 */
+.level-pick { display: grid; gap: 2px; margin: 0 0 8px; }
+.pick { display: flex; align-items: center; gap: 10px; min-height: 44px; font-weight: 600; cursor: pointer; }
+.pick input { width: 20px; height: 20px; accent-color: var(--accent-deep); }
+.level-score { margin: 0 0 12px; padding-left: 1.2rem; }
+.actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.btn.ghost { border: 1px solid var(--accent-deep); background: #fff; color: var(--accent-deep); }
+.answer {
+  display: block;
+  width: 100%;
+  min-height: 48px;
+  margin-bottom: 12px;
+  padding: 0 16px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #fff;
+  color: var(--ink);
+  font: 400 1rem var(--sans);
+}
+.answer:focus-visible { border-color: var(--accent); }
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  min-height: 48px;
+  padding: 0 24px;
+  border: 0;
+  border-radius: 999px;
+  background: linear-gradient(120deg, var(--accent-deep), #4a3fd6);
+  color: #fff;
+  font: 700 1rem var(--sans);
+  cursor: pointer;
+}
+.btn:hover { filter: brightness(1.1); }
+.feedback { margin: 12px 0 0; font-weight: 600; }
+.feedback.ok { color: var(--accent); }
+.feedback.no { color: #b3261e; }
+.feedback + .btn { margin-top: 12px; }
+.score { margin: 0 0 8px; font-size: 1.5rem; font-weight: 800; }
+.note { margin: 0 0 16px; color: var(--ink-soft); }
+
+/* ===== 패드 / PC ===== */
+@media (min-width: 720px) {
+  body { padding: 24px 32px 96px; }
+  .hero { padding: 64px 56px 68px; border-radius: 32px; }
+  .hero::before { right: -60px; top: -90px; width: 420px; height: 420px; }
+  .hero::after { right: 18%; bottom: 36px; width: 64px; height: 64px; }
+  body.study .hero { padding: 40px 48px 44px; }
+  .units { grid-template-columns: 1fr 1fr; gap: 16px; }
+  .summary { padding: 32px; font-size: 1.0625rem; }
+}

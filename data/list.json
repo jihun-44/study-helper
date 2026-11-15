@@ -1,0 +1,88 @@
+{
+  "schools": [
+    {
+      "id": "jinhae",
+      "name": "진해고",
+      "subjects": [
+        {
+          "name": "한국사 Ⅰ 일제 강점기",
+          "units": [
+            {
+              "title": "1. 일제가 무단 통치를 실시하다",
+              "id": "jinhae/history-01-military-rule"
+            },
+            {
+              "title": "2. 기만적인 '문화 정치'를 실시하다",
+              "id": "jinhae/history-02-cultural-rule"
+            },
+            {
+              "title": "3. 일제가 민족 말살 통치를 실시하다",
+              "id": "jinhae/history-03-assimilation"
+            },
+            {
+              "title": "4. 일제가 토지 조사 사업을 실시하다",
+              "id": "jinhae/history-04-land-survey"
+            },
+            {
+              "title": "5. 일제가 산미 증식 계획을 추진하다",
+              "id": "jinhae/history-05-rice-increase"
+            },
+            {
+              "title": "6. 일제가 한국에서 전쟁 물자를 수탈하다",
+              "id": "jinhae/history-06-war-plunder"
+            },
+            {
+              "title": "7. 1910년대 국내외 독립 운동과 3·1 운동",
+              "id": "jinhae/history-07-independence-1910s"
+            },
+            {
+              "title": "8. 대한민국 임시 정부를 수립하다",
+              "id": "jinhae/history-08-provisional-gov"
+            },
+            {
+              "title": "9. 국외에서 무장 독립 투쟁을 전개하다 (1920년대)",
+              "id": "jinhae/history-09-armed-1920s"
+            },
+            {
+              "title": "10. 무장 독립 투쟁을 전개하다 (1930년대)",
+              "id": "jinhae/history-10-armed-1930s"
+            },
+            {
+              "title": "11. 다양한 사회 운동이 일어나다",
+              "id": "jinhae/history-11-social-movements"
+            },
+            {
+              "title": "12. 민족 문화 수호 운동을 전개하다",
+              "id": "jinhae/history-12-culture-defense"
+            }
+          ]
+        },
+        {
+          "name": "한국사 Ⅱ 대한민국의 발전",
+          "units": [
+            {
+              "title": "13. 분단이 고착화되고 독재 체제가 강화되다",
+              "id": "jinhae/history-13-division-dictatorship"
+            },
+            {
+              "title": "14. 6월 민주 항쟁이 일어나다",
+              "id": "jinhae/history-14-june-uprising"
+            },
+            {
+              "title": "15. 산업화로 경제가 성장하다",
+              "id": "jinhae/history-15-economy-growth"
+            },
+            {
+              "title": "16. 산업화로 사회·환경 문제가 나타나다",
+              "id": "jinhae/history-16-society-environment"
+            },
+            {
+              "title": "17. 산업화로 일상생활이 변화하다",
+              "id": "jinhae/history-17-daily-life"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
